@@ -105,3 +105,34 @@ If you are curious to see how a function performs, you can opt to use
 `example(function_name, package = "ecdm")`. Be aware that some examples
 may take considerably longer than the rest to run. 
 
+## Notation
+
+For consistency, we aim to use the following notation.
+
+Denoting individuals:
+
+- $N$ is the total number of individuals taking the assessment.
+- $i$ is the current individual.
+
+Denoting items:
+
+- $J$ is the total number of items on the assessment.
+- $j$ is the current item
+- $Y_{ij}$ is the observed binary response for individual $i$ ($1\leq i \leq N$) to item $j$ ($1\leq j\leq J$).
+- $s_j$ is the probability of slipping on item $j$. 
+- $g_j$ is the probability of guessing on item $j$.
+
+Denoting attributes:
+
+- $K$ is the total number of attributes for the assessment item.
+- $k$ is the current attribute.
+- $\boldsymbol\alpha_i=\left(\alpha_{i1},\dots,\alpha_{iK}\right)^\prime$ 
+  where $\boldsymbol\alpha_i\in \left\{0,1\right\}^K$ and $\alpha_{ik}$ is 
+  the latent binary attribute for individual $i$ on attribute $k$ ($1\leq k\leq K$).
+
+Denoting the skill/attribute "Q" matrix: 
+
+- $\boldsymbol q_{j}=\left(q_{j1},\dots,q_{jK}\right)^\prime$ be the
+  $j$th row of $\boldsymbol Q$ such that $q_{jk}=1$ if 
+  attribute $k$ is required for item $j$ and zero otherwise.
+

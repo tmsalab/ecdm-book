@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 EDINA: Exploratory Deterministic Input, Noisy “And” Gate | Exploratory Cognitive Diagnostic Models</title>
+  <meta name="description" content="Work in progress manual for the exploratory cognitive diagnostic model package." />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 EDINA: Exploratory Deterministic Input, Noisy “And” Gate | Exploratory Cognitive Diagnostic Models" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://tmsalab.github.io/ecdm-book/" />
+  
+  <meta property="og:description" content="Work in progress manual for the exploratory cognitive diagnostic model package." />
+  <meta name="github-repo" content="tmsalab/ecdm-book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 EDINA: Exploratory Deterministic Input, Noisy “And” Gate | Exploratory Cognitive Diagnostic Models" />
+  
+  <meta name="twitter:description" content="Work in progress manual for the exploratory cognitive diagnostic model package." />
+  
+
+<meta name="author" content="James Balamuta" />
+
+
+<meta name="date" content="2020-02-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simcdm.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ECDMs with R</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Preface</b></span></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Exploratory Cognitive Diagnostic Models</a><ul>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installation"><i class="fa fa-check"></i><b>1.1</b> Installation</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#loading-the-package"><i class="fa fa-check"></i><b>1.2</b> Loading the Package</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#supplementary-data-sets"><i class="fa fa-check"></i><b>1.3</b> Supplementary Data Sets</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4</b> Help!</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#notation"><i class="fa fa-check"></i><b>1.5</b> Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simcdm.html"><a href="simcdm.html"><i class="fa fa-check"></i><b>2</b> simcdm: Simulate Cognitive Diagnostic Model Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="simcdm.html"><a href="simcdm.html#matrix-simulation"><i class="fa fa-check"></i><b>2.1</b> Matrix Simulation</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="simcdm.html"><a href="simcdm.html#identifiable-q-matrix-simulation"><i class="fa fa-check"></i><b>2.1.1</b> Identifiable Q Matrix Simulation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="simcdm.html"><a href="simcdm.html#eta-matrix-simulation"><i class="fa fa-check"></i><b>2.1.2</b> <span class="math inline">\(\eta\)</span> Matrix Simulation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="simcdm.html"><a href="simcdm.html#attribute-profile-simulation"><i class="fa fa-check"></i><b>2.1.3</b> Attribute profile simulation</a></li>
+<li class="chapter" data-level="2.1.4" data-path="simcdm.html"><a href="simcdm.html#dina-simulation"><i class="fa fa-check"></i><b>2.1.4</b> DINA Simulation</a></li>
+<li class="chapter" data-level="2.1.5" data-path="simcdm.html"><a href="simcdm.html#dina-item-simulation"><i class="fa fa-check"></i><b>2.1.5</b> DINA Item Simulation</a></li>
+<li class="chapter" data-level="2.1.6" data-path="simcdm.html"><a href="simcdm.html#dina-attribute-simulation"><i class="fa fa-check"></i><b>2.1.6</b> DINA Attribute Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="simcdm.html"><a href="simcdm.html#rrum-simulation"><i class="fa fa-check"></i><b>2.2</b> rRUM Simulation</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="simcdm.html"><a href="simcdm.html#simulate-rrum-items"><i class="fa fa-check"></i><b>2.2.1</b> Simulate rRUM items</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="edina.html"><a href="edina.html"><i class="fa fa-check"></i><b>3</b> EDINA: Exploratory Deterministic Input, Noisy “And” Gate</a><ul>
+<li class="chapter" data-level="3.1" data-path="edina.html"><a href="edina.html#methodology"><i class="fa fa-check"></i><b>3.1</b> Methodology</a></li>
+<li class="chapter" data-level="3.2" data-path="edina.html"><a href="edina.html#single-model-estimation"><i class="fa fa-check"></i><b>3.2</b> Single Model Estimation</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="edina.html"><a href="edina.html#structure-of-edina"><i class="fa fa-check"></i><b>3.2.1</b> Structure of EDINA</a></li>
+<li class="chapter" data-level="3.2.2" data-path="edina.html"><a href="edina.html#extracting-the-q-matrix"><i class="fa fa-check"></i><b>3.2.2</b> Extracting the Q Matrix</a></li>
+<li class="chapter" data-level="3.2.3" data-path="edina.html"><a href="edina.html#extracting-the-model-coefficients"><i class="fa fa-check"></i><b>3.2.3</b> Extracting the Model Coefficients</a></li>
+<li class="chapter" data-level="3.2.4" data-path="edina.html"><a href="edina.html#check-identifiability"><i class="fa fa-check"></i><b>3.2.4</b> Check Identifiability</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="edina.html"><a href="edina.html#comparing-multiple-models"><i class="fa fa-check"></i><b>3.3</b> Comparing Multiple Models</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="edina.html"><a href="edina.html#best-model"><i class="fa fa-check"></i><b>3.3.1</b> Best Model</a></li>
+<li class="chapter" data-level="3.3.2" data-path="edina.html"><a href="edina.html#visually-comparing-models"><i class="fa fa-check"></i><b>3.3.2</b> Visually Comparing Models</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/tmsalab/ecdm-book" target="blank">Source</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploratory Cognitive Diagnostic Models</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="edina" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> EDINA: Exploratory Deterministic Input, Noisy “And” Gate</h1>
+<div id="methodology" class="section level2">
+<h2><span class="header-section-number">3.1</span> Methodology</h2>
+<!-- Todo -->
+</div>
+<div id="single-model-estimation" class="section level2">
+<h2><span class="header-section-number">3.2</span> Single Model Estimation</h2>
+<p>When working with a single <span class="math inline">\(K\)</span> dimension, the easiest way to proceed is to use
+the <code>edina</code> function. This function requires:</p>
+<ul>
+<li><code>data</code>: Item Matrix</li>
+<li><code>k</code>: Number of Traits associated with the Q Matrix.</li>
+<li><code>burnin</code>: Amount of iterations to <strong>discard</strong></li>
+<li><code>chain_length</code>: Amount of iterations to <strong>keep</strong></li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">model =<span class="st"> </span><span class="kw">edina</span>(Y, <span class="dt">k =</span> <span class="dv">3</span>, <span class="dt">burnin =</span> <span class="dv">10000</span>, <span class="dt">chain_length =</span> <span class="dv">20000</span>)</a></code></pre></div>
+<p>Let’s take the fraction-subtraction data that we loaded earlier and perform
+an estimation with it using <code>k = 2</code>. Please <em>note</em> it will take about 3 minutes
+to complete.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">edina_fractions_k2 =<span class="st"> </span><span class="kw">edina</span>(<span class="dt">data =</span> items_fractions, <span class="dt">k =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div id="structure-of-edina" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Structure of EDINA</h3>
+<p>Underneath the <code>edina_fractions_k2</code> variable is a wealth of information regarding
+the model fit. This information can be used in subseqent analysis. To aide
+in this endeavor, we’ve crafted a series of helper functions that will be
+discussed next. In the interim, please feel free to look at the underlying
+structure of <code>edina_fractions_k2</code> using <code>str()</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">str</span>(edina_fractions_k2)</a></code></pre></div>
+<pre><code>## List of 15
+##  $ coefficients  : num [1:20, 1:4] 0.0712 0.0757 0.027 0.2211 0.3048 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:20] &quot;Item1&quot; &quot;Item2&quot; &quot;Item3&quot; &quot;Item4&quot; ...
+##   .. ..$ : chr [1:4] &quot;Guessing&quot; &quot;SD(Guessing)&quot; &quot;Slipping&quot; &quot;SD(Slipping)&quot;
+##  $ loglike_summed: num -93840906
+##  $ loglike_pmean : num -4671
+##  $ pi_classes    : num [1:4, 1] 0.3858 0.141 0.0301 0.4431
+##  $ avg_q         : num [1:20, 1:2] 0 0 0 1 0 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:20] &quot;Item1&quot; &quot;Item2&quot; &quot;Item3&quot; &quot;Item4&quot; ...
+##   .. ..$ : chr [1:2] &quot;Trait1&quot; &quot;Trait2&quot;
+##  $ est_q         : num [1:20, 1:2] 0 0 0 1 0 0 0 1 1 1 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##   .. ..$ : chr [1:20] &quot;Item1&quot; &quot;Item2&quot; &quot;Item3&quot; &quot;Item4&quot; ...
+##   .. ..$ : chr [1:2] &quot;Trait1&quot; &quot;Trait2&quot;
+##  $ or_tested     : num [1:20, 1:20] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ sample_or     : num [1:20, 1:20] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ n             : int 536
+##  $ j             : int 20
+##  $ k             : int 2
+##  $ burnin        : num 10000
+##  $ chain_length  : num 20000
+##  $ timing        : Named num [1:3] 62.282 0.015 62.3
+##   ..- attr(*, &quot;names&quot;)= chr [1:3] &quot;user.self&quot; &quot;sys.self&quot; &quot;elapsed&quot;
+##  $ dataset_name  : chr &quot;items_fractions&quot;
+##  - attr(*, &quot;class&quot;)= chr &quot;edina&quot;</code></pre>
+<p>The details on the return values contained in the EDINA model can be found in
+<code>?edina</code>.</p>
+</div>
+<div id="extracting-the-q-matrix" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Extracting the Q Matrix</h3>
+<p>As the Q matrix is estimated, there are two ways to extract the Q matrix. The
+first way involves looking directly at the average and the second way involves
+looking at the dichotomous state of the Q matrix (default). The latter is
+constructed by treating element-wise entries with values greater than 0.5 as
+being 1 and values less than 0.5 as being 0.</p>
+<p>Extracting the Q matrix from an estimated model can be done using</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw">extract_q_matrix</span>(x, <span class="dt">binary_q =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Let’s view both forms of the estimated Q Matrix for <code>edina_fractions_k2</code></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">extract_q_matrix</span>(edina_fractions_k2)</a></code></pre></div>
+<pre><code>##         Trait1  Trait2
+## Item1  0.00000 1.00000
+## Item2  0.00000 1.00000
+## Item3  0.00000 1.00000
+## Item4  1.00000 0.13255
+## Item5  0.00000 1.00000
+## Item6  0.00000 1.00000
+## Item7  0.00000 1.00000
+## Item8  0.97990 0.99595
+## Item9  0.99420 0.99985
+## Item10 1.00000 0.02235
+## Item11 1.00000 0.00000
+## Item12 0.29850 0.70215
+## Item13 1.00000 1.00000
+## Item14 0.00000 1.00000
+## Item15 0.00000 1.00000
+## Item16 0.06445 0.93745
+## Item17 1.00000 0.00000
+## Item18 1.00000 0.00005
+## Item19 1.00000 0.99995
+## Item20 1.00000 0.00000</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">extract_q_matrix</span>(edina_fractions_k2, <span class="dt">binary_q =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>##        Trait1 Trait2
+## Item1       0      1
+## Item2       0      1
+## Item3       0      1
+## Item4       1      0
+## Item5       0      1
+## Item6       0      1
+## Item7       0      1
+## Item8       1      1
+## Item9       1      1
+## Item10      1      0
+## Item11      1      0
+## Item12      0      1
+## Item13      1      1
+## Item14      0      1
+## Item15      0      1
+## Item16      0      1
+## Item17      1      0
+## Item18      1      0
+## Item19      1      1
+## Item20      1      0</code></pre>
+<p>An alternative way to view the estimated Q matrix is to plot it on a graph.
+Graphing a Q matrix is done using a heatmap to show areas strength of the
+estimation for a given item and trait. The underlying graphs for <code>ecdm</code> are
+constructed using the <a href="http://ggplot2.tidyverse.org"><code>ggplot2</code></a> library and,
+thus, can be further manipulated by adding new layers to the plot.</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw">q_graph</span>(x, <span class="dt">binary_q =</span> <span class="ot">TRUE</span>, ...)</a></code></pre></div>
+<p>How does the average Q matrix plot differ from the dichotomous Q matrix plot?</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">q_graph</span>(edina_fractions_k2)</a></code></pre></div>
+<p><img src="m_files/figure-html/q-graph-variants-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">q_graph</span>(edina_fractions_k2, <span class="dt">binary_q =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="m_files/figure-html/q-graph-variants-2.png" width="672" /></p>
+</div>
+<div id="extracting-the-model-coefficients" class="section level3">
+<h3><span class="header-section-number">3.2.3</span> Extracting the Model Coefficients</h3>
+<p>Outside of the estimated Q matrix, you also have the estimated <em>slipping</em> and
+<em>guessing</em> parameters for the EDINA model.</p>
+<p><strong>Recall:</strong></p>
+<ul>
+<li>Guessing represents guessing or the probability of correctly answering item <span class="math inline">\(j\)</span>
+when at least one attribute is lacking, e.g. <span class="math inline">\(g_j=P\left(Y_{ij}=1|\eta_{ij}=0\right)\)</span></li>
+<li>Slipping represents slipping or the probability of an incorrect response for
+individuals with all of the required attributes, e.g. <span class="math inline">\(s_j=P\left(Y_{ij}=0|\eta_{ij}=1\right)\)</span>.</li>
+</ul>
+<p>These coefficients can be retrieved using either <code>coef()</code> or <code>coefficients()</code>
+akin to base R.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">coef</span>(edina_fractions_k2) <span class="co"># or: coefficients(edina_fractions_k2)</span></a></code></pre></div>
+<pre><code>##          Guessing SD(Guessing)   Slipping SD(Slipping)
+## Item1  0.07122652  0.018789967 0.14108199  0.020152254
+## Item2  0.07569449  0.020013270 0.06824275  0.015039251
+## Item3  0.02698653  0.014703219 0.13807849  0.019806591
+## Item4  0.22112037  0.026061723 0.12578350  0.021945289
+## Item5  0.30476626  0.031127407 0.21850436  0.023712028
+## Item6  0.53652583  0.033753208 0.02510464  0.008884901
+## Item7  0.02517658  0.011554679 0.33296921  0.027177836
+## Item8  0.58404755  0.029383234 0.05382223  0.015911676
+## Item9  0.51316566  0.029305936 0.18846420  0.025805495
+## Item10 0.03385231  0.011589874 0.22674090  0.027093081
+## Item11 0.06855694  0.015388724 0.07440054  0.017605533
+## Item12 0.48304034  0.044582849 0.07406747  0.020937753
+## Item13 0.01748661  0.008138668 0.35542825  0.030842162
+## Item14 0.41547980  0.033385357 0.06322286  0.014426010
+## Item15 0.05460958  0.016031512 0.26546315  0.025597122
+## Item16 0.41039489  0.037750229 0.09799984  0.019094943
+## Item17 0.05058086  0.014311418 0.14062367  0.022298586
+## Item18 0.13095644  0.020758565 0.15592299  0.023078870
+## Item19 0.02451213  0.009345748 0.33160007  0.030629486
+## Item20 0.01533473  0.008277803 0.18736865  0.024921173</code></pre>
+</div>
+<div id="check-identifiability" class="section level3">
+<h3><span class="header-section-number">3.2.4</span> Check Identifiability</h3>
+<p>Any Q matrix can be checked to ensure that the identifiability conditions are
+met. In particular, we have:</p>
+<ol style="list-style-type: decimal">
+<li>For a <span class="math inline">\(J\times J\)</span> permutation matrix <span class="math inline">\(\mathbf P\)</span>, <span class="math inline">\(\mathbf Q\)</span> can be expressed as,
+<span class="math display">\[ \mathbf P\mathbf Q = \left[\begin{array}{c}
+\mathbf I_K \\
+\mathbf I_K\\
+\widetilde{\mathbf Q}
+\end{array}\right],\]</span>
+where <span class="math inline">\(\mathbf I_K\)</span> is a <span class="math inline">\(K\times K\)</span> identity matrix and <span class="math inline">\(\widetilde{\mathbf Q}\)</span> is a <span class="math inline">\(\left(J-2K\right)\times K\)</span> sub-matrix of <span class="math inline">\(\mathbf Q\)</span> with column <span class="math inline">\(k\)</span> denoted by <span class="math inline">\(\widetilde{\mathbf Q}_k\)</span>.</li>
+<li>Each skill loads onto at least three items, which implies <span class="math inline">\(\mathbf Q_k^\prime \mathbf 1_J \geq 3\)</span> where <span class="math inline">\(\mathbf 1_J\)</span> is a <span class="math inline">\(J\)</span> dimensional vector of ones. Similarly, if <span class="math inline">\(c_k\)</span> is the <span class="math inline">\(k\)</span>th column margin for <span class="math inline">\(\widetilde{\mathbf Q}\)</span> (i.e., <span class="math inline">\(c_k = \widetilde{\mathbf Q}_k^\prime \mathbf 1_{J-2K}\)</span>) this condition is equivalent to <span class="math inline">\(c_k&gt;0\)</span>.</li>
+<li>Each item loads onto at least one skill such that <span class="math inline">\(\mathbf q_j^\prime \mathbf1_K&gt;0\)</span>.</li>
+</ol>
+<p>To verify a Q matrix is identifiable, we can use <code>check_identifiability()</code>.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">example_Q =<span class="st"> </span><span class="kw">extract_q_matrix</span>(edina_fractions_k2)</a>
+<a class="sourceLine" id="cb44-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co"># Todo: switch to is_identifiable</span></a>
+<a class="sourceLine" id="cb44-4" data-line-number="4"><span class="co"># check_identifiability(example_Q)</span></a></code></pre></div>
+</div>
+</div>
+<div id="comparing-multiple-models" class="section level2">
+<h2><span class="header-section-number">3.3</span> Comparing Multiple Models</h2>
+<p>With the ability to estimate a variety of model under the exploratory framework,
+there is interest in being able to select which model and, subsequently,
+Q matrix is preferred. To aide in this endeavor, there exists:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">auto_edina</span>(data, <span class="dt">k =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">burnin =</span> <span class="dv">10000</span>, <span class="dt">chain_length =</span> <span class="dv">20000</span>,</a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">  <span class="dt">save_results =</span> <span class="ot">FALSE</span>, <span class="dt">save_filename =</span> <span class="st">&quot;edina_model_data&quot;</span>)</a></code></pre></div>
+<p>This function is slightly different than <code>edina</code> in the sense that it takes a
+<em>range</em> of dimensions in the <code>k</code> parameter. Furthermore, it offers the ability
+to save model objects independently of one another. This is useful for estimating
+higher dimensions.</p>
+<p>Let’s estimate the models for <code>items_fractions</code> that have been 2 and 4 traits.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">many_edina_fractions =<span class="st"> </span><span class="kw">auto_edina</span>( items_fractions , <span class="dt">k =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>## Starting the estimation procedure ...</code></pre>
+<pre><code>## Working on k = 2 ...</code></pre>
+<pre><code>## Time Elapsed: 63.648</code></pre>
+<pre><code>## Working on k = 3 ...</code></pre>
+<pre><code>## Time Elapsed: 109.915</code></pre>
+<pre><code>## Working on k = 4 ...</code></pre>
+<pre><code>## Time Elapsed: 198.309</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">many_edina_fractions</a></code></pre></div>
+<pre><code>## The results of searching Q-matrices between 2 and 4 ...
+##  k   bic  dic heuristic
+##  2 10119 9672    0.4895
+##  3  9726 9135    0.4526
+##  4  9705 8939    0.4526</code></pre>
+<div id="best-model" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Best Model</h3>
+<p>As the <code>auto_edina()</code> model contains a set of models, we need an efficient way
+of deciding which model to use. For performing model selection, the package
+implements three different information criterion:</p>
+<ul>
+<li>deviance information criterion (DIC),</li>
+<li>bayesian information criterion (BIC), and</li>
+<li>computing posterior predictive probabilities (PPPs) of the item means
+and odds ratios for each pair of items. PPPs smaller than 0.05 or greater
+than 0.95 to be extreme and evidence of misfit.</li>
+</ul>
+<p><span class="math display">\[DIC = -2\left({\log p\left( {\mathbf{y}| \mathbf{\hat{\theta}} } \right)  - 2\left( {\log p\left( {\mathbf{y}| \mathbf{\hat{\theta}} } \right) - \frac{1}{N}\sum\limits_{n = 1}^N {\log p\left( {\mathbf{y}|{\mathbf{\theta} _s}} \right)} } \right)} \right)\]</span></p>
+<p><span class="math display">\[BIC = -2 \log p\left( {\mathbf{y}| \mathbf{\hat{\theta}} } \right) + (k+j)\log(n) \]</span></p>
+<p><span class="math inline">\(PPP\)</span> Procedure:</p>
+<ol style="list-style-type: decimal">
+<li>simulating observed responses <span class="math inline">\(\mathbf Y^{(r)}\)</span> using model parameters from
+iteration <span class="math inline">\(r\)</span> of the MCMC sampler</li>
+<li>computing the odds ratio for each pair of items at iteration <span class="math inline">\(r\)</span> as
+<span class="math inline">\(OR^{(r)} = n_{11}^{(r)}n_{00}^{(r)}/\left(n_{10}^{(r)}n_{01}^{(r)}\right)\)</span>
+here <span class="math inline">\(n_{11}^{(r)}\)</span> is the frequency of ones on both variables at iteration <span class="math inline">\(r\)</span>, <span class="math inline">\(n_{10}^{(r)}\)</span> is the frequency of ones on the first item and zeros on the second at iteration <span class="math inline">\(r\)</span>, etc.; and</li>
+<li>computing PPPs for each item pair as the proportion of generated <span class="math inline">\(OR^{(r)}\)</span>’s that exceeded elements of the observed odds ratios.</li>
+</ol>
+<p>We can individually apply these methods to an <code>edina</code> object. By default,
+<code>auto_edina()</code> computes and saves the result.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">DIC</span>(edina_fractions_k2)</a></code></pre></div>
+<pre><code>## [1] 9426.435</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">BIC</span>(edina_fractions_k2)</a></code></pre></div>
+<pre><code>## [1] 9869.614</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">model_heuristic</span>(edina_fractions_k2, <span class="dt">alpha =</span> <span class="fl">0.05</span>) ## PPP</a></code></pre></div>
+<pre><code>## [1] 0.4052632</code></pre>
+<p>When viewing the variable containing the results of <code>auto_edina()</code>, the model
+selection information will be displayed.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">many_edina_fractions</a></code></pre></div>
+<pre><code>## The results of searching Q-matrices between 2 and 4 ...
+##  k   bic  dic heuristic
+##  2 10119 9672    0.4895
+##  3  9726 9135    0.4526
+##  4  9705 8939    0.4526</code></pre>
+<p>To extract the “best model”, we can use the <code>best_model()</code> function with
+an appropriate <code>ic</code> selection of either: “heuristic” (PPP), “bic”, or “dic”.</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">best_edina_fractions =<span class="st"> </span><span class="kw">best_model</span>(many_edina_fractions)</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">best_edina_fractions</a></code></pre></div>
+<pre><code>## The EDINA model for data with K = 3 
+## 
+## The model fit is as follows:
+##  k      bic      dic heuristic
+##  3 9726.208 9134.803 0.4526316
+## 
+## The estimated coefficients for the EDINA model are:
+##        Guessing SD(Guessing) Slipping SD(Slipping)
+## Item1  0.042310     0.016233  0.13641      0.01968
+## Item2  0.052490     0.017322  0.06862      0.01490
+## Item3  0.009615     0.009018  0.14216      0.02022
+## Item4  0.205512     0.027935  0.12391      0.02110
+## Item5  0.309724     0.031307  0.21319      0.02440
+## Item6  0.311496     0.047629  0.04187      0.01076
+## Item7  0.034765     0.015716  0.33795      0.02857
+## Item8  0.580603     0.030456  0.05366      0.01584
+## Item9  0.346158     0.044797  0.24968      0.02234
+## Item10 0.027836     0.010947  0.22889      0.02704
+## Item11 0.069236     0.015571  0.07181      0.01729
+## Item12 0.204721     0.040968  0.09183      0.01571
+## Item13 0.018518     0.008336  0.35122      0.03137
+## Item14 0.099343     0.038027  0.06550      0.01412
+## Item15 0.059198     0.016587  0.25131      0.02553
+## Item16 0.124585     0.035715  0.10890      0.01719
+## Item17 0.049741     0.013981  0.13736      0.02206
+## Item18 0.131878     0.020573  0.15445      0.02293
+## Item19 0.025475     0.009584  0.32668      0.03077
+## Item20 0.015159     0.008012  0.18518      0.02478
+## 
+## The estimated Q matrix is:
+##        Trait1  Trait2 Trait3
+## Item1  0.0000 1.00000 0.0000
+## Item2  0.0000 1.00000 0.0000
+## Item3  0.0000 1.00000 0.0000
+## Item4  0.1755 0.01135 1.0000
+## Item5  0.7986 1.00000 0.0000
+## Item6  1.0000 0.00000 0.0000
+## Item7  0.4016 1.00000 0.0000
+## Item8  0.1925 0.92820 0.9866
+## Item9  0.9997 0.00350 0.0034
+## Item10 0.2403 0.00145 1.0000
+## Item11 0.9352 0.00000 1.0000
+## Item12 1.0000 0.00000 0.0000
+## Item13 0.8915 1.00000 1.0000
+## Item14 1.0000 0.00000 0.0000
+## Item15 1.0000 1.00000 0.0000
+## Item16 1.0000 0.00000 0.0000
+## Item17 0.8017 0.00000 1.0000
+## Item18 0.8312 0.00000 1.0000
+## Item19 0.8972 0.99995 1.0000
+## Item20 0.8076 0.00000 1.0000</code></pre>
+<p>The output reverts to what is shown during a traditional <code>edina</code> estimation.
+This will similarly be the case if you use <code>extract_q_matrix()</code> on an <code>auto_edina()</code>
+object.</p>
+</div>
+<div id="visually-comparing-models" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Visually Comparing Models</h3>
+<p>To better understand the set of models that was estimated, we can take a look
+at the collection of their values. There two graphs of particular interest here:</p>
+<ul>
+<li>model selection criterion changes over time.</li>
+<li>parameter evolution over time of slipping and guessing</li>
+</ul>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">parameter_evolution_graph</span>(many_edina_fractions)</a></code></pre></div>
+<p><img src="m_files/figure-html/many-model-graph-example-1.png" width="672" /></p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">model_selection_graph</span>(many_edina_fractions)</a></code></pre></div>
+<p><img src="m_files/figure-html/many-model-graph-example-2.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simcdm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["m.pdf", "m.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

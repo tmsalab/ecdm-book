@@ -1,0 +1,220 @@
+#  EDINA: Exploratory Deterministic Input, Noisy “And” Gate {#edina}
+
+## Methodology
+
+<!-- Todo -->
+
+## Single Model Estimation
+
+When working with a single $K$ dimension, the easiest way to proceed is to use
+the `edina` function. This function requires:
+
+- `data`: Item Matrix
+- `k`: Number of Traits associated with the Q Matrix.
+- `burnin`: Amount of iterations to **discard**
+- `chain_length`: Amount of iterations to **keep**
+
+```{r include = FALSE}
+library(edina)
+library(ecdmdata)
+```
+
+```{r, eval = FALSE}
+model = edina(Y, k = 3, burnin = 10000, chain_length = 20000)
+```
+
+Let's take the fraction-subtraction data that we loaded earlier and perform
+an estimation with it using `k = 2`. Please _note_ it will take about 3 minutes
+to complete.
+
+```{r one-model, cache = TRUE}
+edina_fractions_k2 = edina(data = items_fractions, k = 2)
+```
+
+### Structure of EDINA
+
+Underneath the `edina_fractions_k2` variable is a wealth of information regarding
+the model fit. This information can be used in subseqent analysis. To aide
+in this endeavor, we've crafted a series of helper functions that will be
+discussed next. In the interim, please feel free to look at the underlying
+structure of `edina_fractions_k2` using `str()`.
+
+```{r view-str, exercise = TRUE}
+str(edina_fractions_k2)
+```
+
+The details on the return values contained in the EDINA model can be found in
+`?edina`.
+
+### Extracting the Q Matrix 
+
+As the Q matrix is estimated, there are two ways to extract the Q matrix. The
+first way involves looking directly at the average and the second way involves
+looking at the dichotomous state of the Q matrix (default). The latter is 
+constructed by treating element-wise entries with values greater than 0.5 as
+being 1 and values less than 0.5 as being 0.
+
+Extracting the Q matrix from an estimated model can be done using
+
+```{r, eval = FALSE}
+extract_q_matrix(x, binary_q = TRUE)
+```
+
+Let's view both forms of the estimated Q Matrix for `edina_fractions_k2`
+
+```{r q-single-extract}
+extract_q_matrix(edina_fractions_k2)
+extract_q_matrix(edina_fractions_k2, binary_q = TRUE)
+```
+
+An alternative way to view the estimated Q matrix is to plot it on a graph. 
+Graphing a Q matrix is done using a heatmap to show areas strength of the
+estimation for a given item and trait. The underlying graphs for `ecdm` are
+constructed using the [`ggplot2`](http://ggplot2.tidyverse.org) library and,
+thus, can be further manipulated by adding new layers to the plot.
+
+```{r, eval = FALSE}
+q_graph(x, binary_q = TRUE, ...)
+```
+
+How does the average Q matrix plot differ from the dichotomous Q matrix plot?
+
+```{r q-graph-variants}
+q_graph(edina_fractions_k2)
+
+q_graph(edina_fractions_k2, binary_q = FALSE)
+```
+
+### Extracting the Model Coefficients
+
+Outside of the estimated Q matrix, you also have the estimated _slipping_ and
+_guessing_ parameters for the EDINA model. 
+
+**Recall:**
+
+- Guessing represents guessing or the probability of correctly answering item $j$
+  when at least one attribute is lacking, e.g. $g_j=P\left(Y_{ij}=1|\eta_{ij}=0\right)$
+- Slipping represents slipping or the probability of an incorrect response for
+  individuals with all of the required attributes, e.g. $s_j=P\left(Y_{ij}=0|\eta_{ij}=1\right)$.
+
+These coefficients can be retrieved using either `coef()` or `coefficients()`
+akin to base R.
+
+```{r coef-edina}
+coef(edina_fractions_k2) # or: coefficients(edina_fractions_k2)
+```
+
+### Check Identifiability
+
+Any Q matrix can be checked to ensure that the identifiability conditions are
+met. In particular, we have:
+
+1. For a $J\times J$ permutation matrix $\mathbf P$, $\mathbf Q$ can be expressed as,
+$$ \mathbf P\mathbf Q = \left[\begin{array}{c}
+\mathbf I_K \\
+\mathbf I_K\\
+\widetilde{\mathbf Q}
+\end{array}\right],$$
+where $\mathbf I_K$ is a $K\times K$ identity matrix and $\widetilde{\mathbf Q}$ is a $\left(J-2K\right)\times K$ sub-matrix of $\mathbf Q$ with column $k$ denoted by $\widetilde{\mathbf Q}_k$.
+2. Each skill loads onto at least three items, which implies $\mathbf Q_k^\prime \mathbf 1_J \geq 3$ where $\mathbf 1_J$ is a $J$ dimensional vector of ones. Similarly, if $c_k$ is the $k$th column margin for $\widetilde{\mathbf Q}$ (i.e., $c_k = \widetilde{\mathbf Q}_k^\prime \mathbf 1_{J-2K}$) this condition is equivalent to $c_k>0$.
+3. Each item loads onto at least one skill such that $\mathbf q_j^\prime \mathbf1_K>0$.
+
+To verify a Q matrix is identifiable, we can use `check_identifiability()`.
+
+```{r id-mat}
+example_Q = extract_q_matrix(edina_fractions_k2)
+
+# Todo: switch to is_identifiable
+# check_identifiability(example_Q)
+```
+
+## Comparing Multiple Models
+
+With the ability to estimate a variety of model under the exploratory framework,
+there is interest in being able to select which model and, subsequently, 
+Q matrix is preferred. To aide in this endeavor, there exists:
+
+```{r, eval = FALSE}
+auto_edina(data, k = 2:4, burnin = 10000, chain_length = 20000,
+  save_results = FALSE, save_filename = "edina_model_data")
+```
+
+This function is slightly different than `edina` in the sense that it takes a
+_range_ of dimensions in the `k` parameter. Furthermore, it offers the ability
+to save model objects independently of one another. This is useful for estimating
+higher dimensions.
+
+Let's estimate the models for `items_fractions` that have been 2 and 4 traits.
+
+```{r multiple-models-solution, cache = TRUE}
+many_edina_fractions = auto_edina( items_fractions , k = 2:4)
+many_edina_fractions
+```
+
+### Best Model
+
+As the `auto_edina()` model contains a set of models, we need an efficient way
+of deciding which model to use. For performing model selection, the package
+implements three different information criterion: 
+
+- deviance information criterion (DIC), 
+- bayesian information criterion (BIC), and 
+- computing posterior predictive probabilities (PPPs) of the item means 
+  and odds ratios for each pair of items. PPPs smaller than 0.05 or greater 
+  than 0.95 to be extreme and evidence of misfit. 
+
+$$DIC = -2\left({\log p\left( {\mathbf{y}| \mathbf{\hat{\theta}} } \right)  - 2\left( {\log p\left( {\mathbf{y}| \mathbf{\hat{\theta}} } \right) - \frac{1}{N}\sum\limits_{n = 1}^N {\log p\left( {\mathbf{y}|{\mathbf{\theta} _s}} \right)} } \right)} \right)$$
+
+$$BIC = -2 \log p\left( {\mathbf{y}| \mathbf{\hat{\theta}} } \right) + (k+j)\log(n) $$
+
+$PPP$ Procedure:
+
+1. simulating observed responses $\mathbf Y^{(r)}$ using model parameters from
+   iteration $r$ of the MCMC sampler
+2. computing the odds ratio for each pair of items at iteration $r$ as
+   $OR^{(r)} = n_{11}^{(r)}n_{00}^{(r)}/\left(n_{10}^{(r)}n_{01}^{(r)}\right)$ 
+   here $n_{11}^{(r)}$ is the frequency of ones on both variables at iteration $r$, $n_{10}^{(r)}$ is the frequency of ones on the first item and zeros on the second at iteration $r$, etc.; and
+3. computing PPPs for each item pair as the proportion of generated $OR^{(r)}$'s that exceeded elements of the observed odds ratios. 
+
+We can individually apply these methods to an `edina` object. By default,
+`auto_edina()` computes and saves the result.
+
+```{r retrieve-values}
+DIC(edina_fractions_k2)
+BIC(edina_fractions_k2)
+model_heuristic(edina_fractions_k2, alpha = 0.05) ## PPP
+```
+
+When viewing the variable containing the results of `auto_edina()`, the model
+selection information will be displayed.
+
+```{r auto_edina_print}
+many_edina_fractions
+```
+
+To extract the "best model", we can use the `best_model()` function with
+an appropriate `ic` selection of either: "heuristic" (PPP), "bic", or "dic".
+
+```{r best-model}
+best_edina_fractions = best_model(many_edina_fractions)
+best_edina_fractions
+```
+
+The output reverts to what is shown during a traditional `edina` estimation.
+This will similarly be the case if you use `extract_q_matrix()` on an `auto_edina()`
+object.
+
+### Visually Comparing Models
+
+To better understand the set of models that was estimated, we can take a look
+at the collection of their values. There two graphs of particular interest here:
+
+- model selection criterion changes over time.
+- parameter evolution over time of slipping and guessing
+
+```{r many-model-graph-example}
+parameter_evolution_graph(many_edina_fractions)
+
+model_selection_graph(many_edina_fractions)
+```
+

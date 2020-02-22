@@ -13,6 +13,8 @@ Imports:
   knitr,
   Rcpp,
   ggplot2,
-  ecdm
+  ecdm,
+  ecdmdata
 Remotes:
-  tmsalab/ecdm
+  tmsalab/ecdm,
+  tmsalab/ecdmdata

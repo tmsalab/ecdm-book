@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="references.html"/>
+<link rel="next" href="simcdm.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -140,6 +140,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#loading-the-package"><i class="fa fa-check"></i><b>1.2</b> Loading the Package</a></li>
 <li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#supplementary-data-sets"><i class="fa fa-check"></i><b>1.3</b> Supplementary Data Sets</a></li>
 <li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4</b> Help!</a></li>
+<li class="chapter" data-level="1.5" data-path="intro.html"><a href="intro.html#notation"><i class="fa fa-check"></i><b>1.5</b> Notation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simcdm.html"><a href="simcdm.html"><i class="fa fa-check"></i><b>2</b> simcdm: Simulate Cognitive Diagnostic Model Data</a><ul>
+<li class="chapter" data-level="2.1" data-path="simcdm.html"><a href="simcdm.html#matrix-simulation"><i class="fa fa-check"></i><b>2.1</b> Matrix Simulation</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="simcdm.html"><a href="simcdm.html#identifiable-q-matrix-simulation"><i class="fa fa-check"></i><b>2.1.1</b> Identifiable Q Matrix Simulation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="simcdm.html"><a href="simcdm.html#eta-matrix-simulation"><i class="fa fa-check"></i><b>2.1.2</b> <span class="math inline">\(\eta\)</span> Matrix Simulation</a></li>
+<li class="chapter" data-level="2.1.3" data-path="simcdm.html"><a href="simcdm.html#attribute-profile-simulation"><i class="fa fa-check"></i><b>2.1.3</b> Attribute profile simulation</a></li>
+<li class="chapter" data-level="2.1.4" data-path="simcdm.html"><a href="simcdm.html#dina-simulation"><i class="fa fa-check"></i><b>2.1.4</b> DINA Simulation</a></li>
+<li class="chapter" data-level="2.1.5" data-path="simcdm.html"><a href="simcdm.html#dina-item-simulation"><i class="fa fa-check"></i><b>2.1.5</b> DINA Item Simulation</a></li>
+<li class="chapter" data-level="2.1.6" data-path="simcdm.html"><a href="simcdm.html#dina-attribute-simulation"><i class="fa fa-check"></i><b>2.1.6</b> DINA Attribute Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="simcdm.html"><a href="simcdm.html#rrum-simulation"><i class="fa fa-check"></i><b>2.2</b> rRUM Simulation</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="simcdm.html"><a href="simcdm.html#simulate-rrum-items"><i class="fa fa-check"></i><b>2.2.1</b> Simulate rRUM items</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -280,6 +294,37 @@ as well. To view this information type either <code>?function_name</code> or
 <p>If you are curious to see how a function performs, you can opt to use
 <code>example(function_name, package = &quot;ecdm&quot;)</code>. Be aware that some examples
 may take considerably longer than the rest to run.</p>
+</div>
+<div id="notation" class="section level2">
+<h2><span class="header-section-number">1.5</span> Notation</h2>
+<p>For consistency, we aim to use the following notation.</p>
+<p>Denoting individuals:</p>
+<ul>
+<li><span class="math inline">\(N\)</span> is the total number of individuals taking the assessment.</li>
+<li><span class="math inline">\(i\)</span> is the current individual.</li>
+</ul>
+<p>Denoting items:</p>
+<ul>
+<li><span class="math inline">\(J\)</span> is the total number of items on the assessment.</li>
+<li><span class="math inline">\(j\)</span> is the current item</li>
+<li><span class="math inline">\(Y_{ij}\)</span> is the observed binary response for individual <span class="math inline">\(i\)</span> (<span class="math inline">\(1\leq i \leq N\)</span>) to item <span class="math inline">\(j\)</span> (<span class="math inline">\(1\leq j\leq J\)</span>).</li>
+<li><span class="math inline">\(s_j\)</span> is the probability of slipping on item <span class="math inline">\(j\)</span>.</li>
+<li><span class="math inline">\(g_j\)</span> is the probability of guessing on item <span class="math inline">\(j\)</span>.</li>
+</ul>
+<p>Denoting attributes:</p>
+<ul>
+<li><span class="math inline">\(K\)</span> is the total number of attributes for the assessment item.</li>
+<li><span class="math inline">\(k\)</span> is the current attribute.</li>
+<li><span class="math inline">\(\boldsymbol\alpha_i=\left(\alpha_{i1},\dots,\alpha_{iK}\right)^\prime\)</span>
+where <span class="math inline">\(\boldsymbol\alpha_i\in \left\{0,1\right\}^K\)</span> and <span class="math inline">\(\alpha_{ik}\)</span> is
+the latent binary attribute for individual <span class="math inline">\(i\)</span> on attribute <span class="math inline">\(k\)</span> (<span class="math inline">\(1\leq k\leq K\)</span>).</li>
+</ul>
+<p>Denoting the skill/attribute “Q” matrix:</p>
+<ul>
+<li><span class="math inline">\(\boldsymbol q_{j}=\left(q_{j1},\dots,q_{jK}\right)^\prime\)</span> be the
+<span class="math inline">\(j\)</span>th row of <span class="math inline">\(\boldsymbol Q\)</span> such that <span class="math inline">\(q_{jk}=1\)</span> if
+attribute <span class="math inline">\(k\)</span> is required for item <span class="math inline">\(j\)</span> and zero otherwise.</li>
+</ul>
 
 </div>
 </div>
@@ -289,7 +334,7 @@ may take considerably longer than the rest to run.</p>
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="simcdm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

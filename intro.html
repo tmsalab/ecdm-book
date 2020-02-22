@@ -24,7 +24,7 @@
 <meta name="author" content="James Balamuta" />
 
 
-<meta name="date" content="2020-02-21" />
+<meta name="date" content="2020-02-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -138,6 +138,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction to Exploratory Cognitive Diagnostic Models</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#installation"><i class="fa fa-check"></i><b>1.1</b> Installation</a></li>
 <li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#loading-the-package"><i class="fa fa-check"></i><b>1.2</b> Loading the Package</a></li>
+<li class="chapter" data-level="1.3" data-path="intro.html"><a href="intro.html#supplementary-data-sets"><i class="fa fa-check"></i><b>1.3</b> Supplementary Data Sets</a></li>
+<li class="chapter" data-level="1.4" data-path="intro.html"><a href="intro.html#help"><i class="fa fa-check"></i><b>1.4</b> Help!</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -195,6 +197,89 @@ created the following guides:</p>
 <p>Accessing the <code>ecdm</code> rountines requires loading the package into <em>R</em>. Please
 load the <code>ecdm</code> package by pressing “run”</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(ecdm)</a></code></pre></div>
+</div>
+<div id="supplementary-data-sets" class="section level2">
+<h2><span class="header-section-number">1.3</span> Supplementary Data Sets</h2>
+<p>The <code>ecdm</code> package has an accompanying data package called <code>ecdmdata</code> that
+comes equipped with three different data sets:</p>
+<ul>
+<li>Examination for the Certificate of Proficiency in English (ECPE), Templin, J. and Hoffman, L. (2013).
+<ul>
+<li><code>items_ecpe</code>, N = 2922 subject responses to J = 28 items.</li>
+<li><code>qmatrix_ecpe</code>, J = 28 items and K = 3 traits.</li>
+</ul></li>
+<li>Fraction Addition and Subtraction, Tatsuoka, K. K. (1984).
+<ul>
+<li><code>items_fractions</code>: N = 536 subject responses to J = 20 items.</li>
+<li><code>qmatrix_fractions</code>: J = 20 items and K = 8 traits.</li>
+</ul></li>
+<li>Revised PSVT:R, Culpepper and Balamuta (2013).
+<ul>
+<li><code>items_spatial</code>: N = 516 subject responses to J = 30 items.</li>
+</ul></li>
+</ul>
+<p>As time goes on, more data sets will likely be added.</p>
+<p>Let’s take a look at Fraction Addition and Subtraction data sets. Typing the
+name of each data set and running the command will load the data into <em>R</em> if
+the <code>ecdmdata</code> package is loaded. As these data sets are relatively big,
+let’s use the function <code>head()</code> to view on the first 6 rows.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(ecdmdata)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">head</span>( items_fractions )</a></code></pre></div>
+<pre><code>##            Item01 Item02 Item03 Item04 Item05 Item06 Item07 Item08 Item09
+## Subject001      0      0      0      1      0      0      1      1      0
+## Subject002      0      1      1      1      0      1      1      1      1
+## Subject003      0      1      1      1      0      1      1      1      0
+## Subject004      1      1      1      1      1      1      0      1      0
+## Subject005      0      0      0      1      0      1      0      1      0
+## Subject006      0      0      0      0      0      1      0      1      1
+##            Item10 Item11 Item12 Item13 Item14 Item15 Item16 Item17 Item18
+## Subject001      1      1      1      0      1      1      1      0      1
+## Subject002      1      1      1      1      1      1      1      1      1
+## Subject003      0      0      0      0      1      1      1      0      0
+## Subject004      1      1      1      0      1      0      1      0      1
+## Subject005      0      0      1      0      0      0      0      0      0
+## Subject006      0      0      0      0      1      0      0      0      0
+##            Item19 Item20
+## Subject001      1      1
+## Subject002      1      1
+## Subject003      0      0
+## Subject004      0      1
+## Subject005      0      0
+## Subject006      0      0</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">head</span>( qmatrix_fractions )</a></code></pre></div>
+<pre><code>##        Trait1 Trait2 Trait3 Trait4 Trait5 Trait6 Trait7 Trait8
+## Item01      0      0      0      1      0      1      1      0
+## Item02      0      0      0      1      0      0      1      0
+## Item03      0      0      0      1      0      0      1      0
+## Item04      0      1      1      0      1      0      1      0
+## Item05      0      1      0      1      0      0      1      1
+## Item06      0      0      0      0      0      0      1      0</code></pre>
+<p>Within this textbook, the following notation will be used for dimensions:</p>
+<ul>
+<li><span class="math inline">\(K\)</span>: Number of Traits (columns) in the Q Matrix</li>
+<li><span class="math inline">\(J\)</span>: Number of Items (rows/columns) in the Q Matrix and Item Matrix</li>
+<li><span class="math inline">\(N\)</span>: Number of Subjects (rows) in the Item Matrix</li>
+</ul>
+<p>To retrieve this information in <em>R</em>, we can use the dimension function,
+<code>dim()</code>, which lists the size of the data as rows by columns.</p>
+<p>Find the dimensions of the <code>items_fractions</code> and <code>qmatrix_fractions</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">dim</span>(items_fractions)</a></code></pre></div>
+<pre><code>## [1] 536  20</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">dim</span>(qmatrix_fractions)</a></code></pre></div>
+<pre><code>## [1] 20  8</code></pre>
+</div>
+<div id="help" class="section level2">
+<h2><span class="header-section-number">1.4</span> Help!</h2>
+<p>Each function within the package contains a help file that provides documentation
+on the implementation. Moreover, some of the functions have <em>worked</em> examples
+as well. To view this information type either <code>?function_name</code> or
+<code>help(function_name)</code>. Let’s verify the previously acquired numbers for the
+<code>items_fractions</code> data set by checking the entry in the documentation.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">?items_fractions</a></code></pre></div>
+<p>If you are curious to see how a function performs, you can opt to use
+<code>example(function_name, package = &quot;ecdm&quot;)</code>. Be aware that some examples
+may take considerably longer than the rest to run.</p>
 
 </div>
 </div>
@@ -254,6 +339,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

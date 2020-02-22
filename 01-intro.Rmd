@@ -44,3 +44,64 @@ load the `ecdm` package by pressing "run"
 ```{r main-lib}
 library(ecdm)
 ```
+
+## Supplementary Data Sets
+
+The `ecdm` package has an accompanying data package called `ecdmdata` that
+comes equipped with three different data sets:
+
+- Examination for the Certificate of Proficiency in English (ECPE), Templin, J. and Hoffman, L. (2013). 
+    - `items_ecpe`, N = 2922 subject responses to J = 28 items.
+    - `qmatrix_ecpe`, J = 28 items and K = 3 traits. 
+- Fraction Addition and Subtraction, Tatsuoka, K. K. (1984).
+    - `items_fractions`: N = 536 subject responses to J = 20 items.
+    - `qmatrix_fractions`: J = 20 items and K = 8 traits. 
+- Revised PSVT:R, Culpepper and Balamuta (2013).
+    - `items_spatial`: N = 516 subject responses to J = 30 items.
+    
+As time goes on, more data sets will likely be added.
+
+Let's take a look at Fraction Addition and Subtraction data sets. Typing the
+name of each data set and running the command will load the data into _R_ if
+the `ecdmdata` package is loaded. As these data sets are relatively big, 
+let's use the function `head()` to view on the first 6 rows.
+
+```{r data-inc}
+library(ecdmdata)
+
+head( items_fractions )
+head( qmatrix_fractions )
+```
+
+Within this textbook, the following notation will be used for dimensions:
+
+- $K$: Number of Traits (columns) in the Q Matrix
+- $J$: Number of Items (rows/columns) in the Q Matrix and Item Matrix
+- $N$: Number of Subjects (rows) in the Item Matrix
+
+To retrieve this information in _R_, we can use the dimension function,
+`dim()`, which lists the size of the data as rows by columns. 
+
+Find the dimensions of the `items_fractions` and `qmatrix_fractions`
+
+```{r dim-info}
+dim(items_fractions)
+dim(qmatrix_fractions)
+```
+
+## Help!
+
+Each function within the package contains a help file that provides documentation
+on the implementation. Moreover, some of the functions have _worked_ examples 
+as well. To view this information type either `?function_name` or 
+`help(function_name)`. Let's verify the previously acquired numbers for the 
+`items_fractions` data set by checking the entry in the documentation.
+
+```{r help-info}
+?items_fractions
+```
+
+If you are curious to see how a function performs, you can opt to use 
+`example(function_name, package = "ecdm")`. Be aware that some examples
+may take considerably longer than the rest to run. 
+

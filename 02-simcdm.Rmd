@@ -17,30 +17,6 @@ J = 10   # Number of Items
 K = 2    # Number of Skills / Attributes
 ```
 
-### Identifiable Q Matrix Simulation
-
-Simulate an identifiable $Q$ matrix  ($J$ items by $K$ skills).
-
-```{r sim-q-matrix}
-# Set a seed for reproducibility
-set.seed(1512)
-# Simulate an identifiable Q matrix
-Q = sim_q_matrix(J, K)
-Q
-```
-
-### $\eta$ Matrix Simulation
-
-Create the ideal response matrix for each trait ($J$ items by $2^K$ latent classes).
-
-```{r sim-eta-matrix}
-# Set a seed for reproducibility
-set.seed(4421)
-# Simulate an eta matrix
-eta = sim_eta_matrix(K, J, Q)
-eta
-```
-
 ### Attribute profile simulation
 
 Generate latent attribute profile classes ($2^K$ latent classes by $K$ skills).
@@ -63,7 +39,20 @@ subject_alphas
 # subject_alphas = class_alphas[sample(2 ^ K, N, replace = TRUE),]
 ```
 
-### DINA Simulation
+
+### Identifiable Q Matrix Simulation
+
+Simulate an identifiable $Q$ matrix  ($J$ items by $K$ skills).
+
+```{r sim-q-matrix}
+# Set a seed for reproducibility
+set.seed(1512)
+# Simulate an identifiable Q matrix
+Q = sim_q_matrix(J, K)
+Q
+```
+
+## DINA Simulation
 
 Simulations within this section are done underneath the following settings.
 

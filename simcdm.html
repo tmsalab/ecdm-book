@@ -24,7 +24,7 @@
 <meta name="author" content="James Balamuta" />
 
 
-<meta name="date" content="2020-02-22" />
+<meta name="date" content="2020-02-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,15 +144,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="simcdm.html"><a href="simcdm.html"><i class="fa fa-check"></i><b>2</b> simcdm: Simulate Cognitive Diagnostic Model Data</a><ul>
 <li class="chapter" data-level="2.1" data-path="simcdm.html"><a href="simcdm.html#matrix-simulation"><i class="fa fa-check"></i><b>2.1</b> Matrix Simulation</a><ul>
-<li class="chapter" data-level="2.1.1" data-path="simcdm.html"><a href="simcdm.html#identifiable-q-matrix-simulation"><i class="fa fa-check"></i><b>2.1.1</b> Identifiable Q Matrix Simulation</a></li>
-<li class="chapter" data-level="2.1.2" data-path="simcdm.html"><a href="simcdm.html#eta-matrix-simulation"><i class="fa fa-check"></i><b>2.1.2</b> <span class="math inline">\(\eta\)</span> Matrix Simulation</a></li>
-<li class="chapter" data-level="2.1.3" data-path="simcdm.html"><a href="simcdm.html#attribute-profile-simulation"><i class="fa fa-check"></i><b>2.1.3</b> Attribute profile simulation</a></li>
-<li class="chapter" data-level="2.1.4" data-path="simcdm.html"><a href="simcdm.html#dina-simulation"><i class="fa fa-check"></i><b>2.1.4</b> DINA Simulation</a></li>
-<li class="chapter" data-level="2.1.5" data-path="simcdm.html"><a href="simcdm.html#dina-item-simulation"><i class="fa fa-check"></i><b>2.1.5</b> DINA Item Simulation</a></li>
-<li class="chapter" data-level="2.1.6" data-path="simcdm.html"><a href="simcdm.html#dina-attribute-simulation"><i class="fa fa-check"></i><b>2.1.6</b> DINA Attribute Simulation</a></li>
+<li class="chapter" data-level="2.1.1" data-path="simcdm.html"><a href="simcdm.html#attribute-profile-simulation"><i class="fa fa-check"></i><b>2.1.1</b> Attribute profile simulation</a></li>
+<li class="chapter" data-level="2.1.2" data-path="simcdm.html"><a href="simcdm.html#identifiable-q-matrix-simulation"><i class="fa fa-check"></i><b>2.1.2</b> Identifiable Q Matrix Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="simcdm.html"><a href="simcdm.html#rrum-simulation"><i class="fa fa-check"></i><b>2.2</b> rRUM Simulation</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="simcdm.html"><a href="simcdm.html#simulate-rrum-items"><i class="fa fa-check"></i><b>2.2.1</b> Simulate rRUM items</a></li>
+<li class="chapter" data-level="2.2" data-path="simcdm.html"><a href="simcdm.html#dina-simulation"><i class="fa fa-check"></i><b>2.2</b> DINA Simulation</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="simcdm.html"><a href="simcdm.html#dina-item-simulation"><i class="fa fa-check"></i><b>2.2.1</b> DINA Item Simulation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="simcdm.html"><a href="simcdm.html#dina-attribute-simulation"><i class="fa fa-check"></i><b>2.2.2</b> DINA Attribute Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="simcdm.html"><a href="simcdm.html#rrum-simulation"><i class="fa fa-check"></i><b>2.3</b> rRUM Simulation</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="simcdm.html"><a href="simcdm.html#simulate-rrum-items"><i class="fa fa-check"></i><b>2.3.1</b> Simulate rRUM items</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="edina.html"><a href="edina.html"><i class="fa fa-check"></i><b>3</b> EDINA: Exploratory Deterministic Input, Noisy “And” Gate</a><ul>
@@ -200,63 +200,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb12-4" data-line-number="4">N =<span class="st"> </span><span class="dv">15</span>   <span class="co"># Number of Examinees / Subjects</span></a>
 <a class="sourceLine" id="cb12-5" data-line-number="5">J =<span class="st"> </span><span class="dv">10</span>   <span class="co"># Number of Items</span></a>
 <a class="sourceLine" id="cb12-6" data-line-number="6">K =<span class="st"> </span><span class="dv">2</span>    <span class="co"># Number of Skills / Attributes</span></a></code></pre></div>
-<div id="identifiable-q-matrix-simulation" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Identifiable Q Matrix Simulation</h3>
-<p>Simulate an identifiable <span class="math inline">\(Q\)</span> matrix (<span class="math inline">\(J\)</span> items by <span class="math inline">\(K\)</span> skills).</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1512</span>)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># Simulate an identifiable Q matrix</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">Q =<span class="st"> </span><span class="kw">sim_q_matrix</span>(J, K)</a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">Q</a></code></pre></div>
-<pre><code>##       [,1] [,2]
-##  [1,]    1    0
-##  [2,]    1    0
-##  [3,]    0    1
-##  [4,]    0    1
-##  [5,]    0    1
-##  [6,]    0    1
-##  [7,]    1    1
-##  [8,]    1    0
-##  [9,]    1    0
-## [10,]    0    1</code></pre>
-</div>
-<div id="eta-matrix-simulation" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> <span class="math inline">\(\eta\)</span> Matrix Simulation</h3>
-<p>Create the ideal response matrix for each trait (<span class="math inline">\(J\)</span> items by <span class="math inline">\(2^K\)</span> latent classes).</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">4421</span>)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co"># Simulate an eta matrix</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">eta =<span class="st"> </span><span class="kw">sim_eta_matrix</span>(K, J, Q)</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">eta</a></code></pre></div>
-<pre><code>##       [,1] [,2] [,3] [,4]
-##  [1,]    0    0    1    1
-##  [2,]    0    0    1    1
-##  [3,]    0    1    0    1
-##  [4,]    0    1    0    1
-##  [5,]    0    1    0    1
-##  [6,]    0    1    0    1
-##  [7,]    0    0    0    1
-##  [8,]    0    0    1    1
-##  [9,]    0    0    1    1
-## [10,]    0    1    0    1</code></pre>
-</div>
 <div id="attribute-profile-simulation" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Attribute profile simulation</h3>
+<h3><span class="header-section-number">2.1.1</span> Attribute profile simulation</h3>
 <p>Generate latent attribute profile classes (<span class="math inline">\(2^K\)</span> latent classes by <span class="math inline">\(K\)</span> skills).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Create a listing of all attribute classes </span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">class_alphas =<span class="st"> </span><span class="kw">attribute_classes</span>(K)</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">class_alphas</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Create a listing of all attribute classes </span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">class_alphas =<span class="st"> </span><span class="kw">attribute_classes</span>(K)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">class_alphas</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    0    0
 ## [2,]    0    1
 ## [3,]    1    0
 ## [4,]    1    1</code></pre>
 <p>Generate latent attribute profile class for each subject (<span class="math inline">\(N\)</span> subjects by <span class="math inline">\(K\)</span> skills).</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">5126</span>)</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co"># Create attributes for a subject </span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">subject_alphas =<span class="st"> </span><span class="kw">sim_subject_attributes</span>(N, K)</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">subject_alphas</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">5126</span>)</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="co"># Create attributes for a subject </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4">subject_alphas =<span class="st"> </span><span class="kw">sim_subject_attributes</span>(N, K)</a>
+<a class="sourceLine" id="cb15-5" data-line-number="5">subject_alphas</a></code></pre></div>
 <pre><code>##       [,1] [,2]
 ##  [1,]    0    0
 ##  [2,]    1    1
@@ -273,33 +233,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [13,]    1    0
 ## [14,]    0    0
 ## [15,]    1    0</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Equivalent to:</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co"># subject_alphas = class_alphas[sample(2 ^ K, N, replace = TRUE),]</span></a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Equivalent to:</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co"># subject_alphas = class_alphas[sample(2 ^ K, N, replace = TRUE),]</span></a></code></pre></div>
 </div>
-<div id="dina-simulation" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> DINA Simulation</h3>
+<div id="identifiable-q-matrix-simulation" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Identifiable Q Matrix Simulation</h3>
+<p>Simulate an identifiable <span class="math inline">\(Q\)</span> matrix (<span class="math inline">\(J\)</span> items by <span class="math inline">\(K\)</span> skills).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">1512</span>)</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co"># Simulate an identifiable Q matrix</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">Q =<span class="st"> </span><span class="kw">sim_q_matrix</span>(J, K)</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">Q</a></code></pre></div>
+<pre><code>##       [,1] [,2]
+##  [1,]    1    0
+##  [2,]    1    0
+##  [3,]    0    1
+##  [4,]    0    1
+##  [5,]    0    1
+##  [6,]    0    1
+##  [7,]    1    1
+##  [8,]    1    0
+##  [9,]    1    0
+## [10,]    0    1</code></pre>
+</div>
+</div>
+<div id="dina-simulation" class="section level2">
+<h2><span class="header-section-number">2.2</span> DINA Simulation</h2>
 <p>Simulations within this section are done underneath the following settings.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">888</span>)</a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="co"># Setup Parameters</span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4">N =<span class="st"> </span><span class="dv">15</span>   <span class="co"># Number of Examinees / Subjects</span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">J =<span class="st"> </span><span class="dv">10</span>   <span class="co"># Number of Items</span></a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">K =<span class="st"> </span><span class="dv">2</span>    <span class="co"># Number of Skills / Attributes</span></a>
-<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="co"># Assign slipping and guessing values for each item</span></a>
-<a class="sourceLine" id="cb22-8" data-line-number="8">ss =<span class="st"> </span>gs =<span class="st"> </span><span class="kw">rep</span>(.<span class="dv">2</span>, J)</a>
-<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="co"># Simulate identifiable Q matrix</span></a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">Q =<span class="st"> </span><span class="kw">sim_q_matrix</span>(J, K)</a>
-<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="co"># Simulate subject attributes</span></a>
-<a class="sourceLine" id="cb22-12" data-line-number="12">subject_alphas =<span class="st"> </span><span class="kw">sim_subject_attributes</span>(N, K)</a></code></pre></div>
-</div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">888</span>)</a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="co"># Setup Parameters</span></a>
+<a class="sourceLine" id="cb20-4" data-line-number="4">N =<span class="st"> </span><span class="dv">15</span>   <span class="co"># Number of Examinees / Subjects</span></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">J =<span class="st"> </span><span class="dv">10</span>   <span class="co"># Number of Items</span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6">K =<span class="st"> </span><span class="dv">2</span>    <span class="co"># Number of Skills / Attributes</span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="co"># Assign slipping and guessing values for each item</span></a>
+<a class="sourceLine" id="cb20-8" data-line-number="8">ss =<span class="st"> </span>gs =<span class="st"> </span><span class="kw">rep</span>(.<span class="dv">2</span>, J)</a>
+<a class="sourceLine" id="cb20-9" data-line-number="9"><span class="co"># Simulate identifiable Q matrix</span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10">Q =<span class="st"> </span><span class="kw">sim_q_matrix</span>(J, K)</a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="co"># Simulate subject attributes</span></a>
+<a class="sourceLine" id="cb20-12" data-line-number="12">subject_alphas =<span class="st"> </span><span class="kw">sim_subject_attributes</span>(N, K)</a></code></pre></div>
 <div id="dina-item-simulation" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> DINA Item Simulation</h3>
+<h3><span class="header-section-number">2.2.1</span> DINA Item Simulation</h3>
 <p>Simulate item data, <span class="math inline">\(Y\)</span>, under DINA model (<span class="math inline">\(N\)</span> by <span class="math inline">\(J\)</span>)</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">2019</span>)</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co"># Simulate items under the DINA model</span></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">items_dina =<span class="st"> </span><span class="kw">sim_dina_items</span>(subject_alphas, Q, ss, gs)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">items_dina</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">2019</span>)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co"># Simulate items under the DINA model</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">items_dina =<span class="st"> </span><span class="kw">sim_dina_items</span>(subject_alphas, Q, ss, gs)</a>
+<a class="sourceLine" id="cb21-5" data-line-number="5">items_dina</a></code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 ##  [1,]    0    0    0    1    1    0    0    0    1     1
 ##  [2,]    1    1    1    0    1    1    1    1    0     1
@@ -318,13 +298,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [15,]    1    1    0    1    0    0    1    1    0     0</code></pre>
 </div>
 <div id="dina-attribute-simulation" class="section level3">
-<h3><span class="header-section-number">2.1.6</span> DINA Attribute Simulation</h3>
+<h3><span class="header-section-number">2.2.2</span> DINA Attribute Simulation</h3>
 <p>Simulate attribute data under DINA model (<span class="math inline">\(N\)</span> by <span class="math inline">\(J\)</span>)</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">51823</span>)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co"># Simulate attributes under the DINA model</span></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4">attributes =<span class="st"> </span><span class="kw">sim_dina_attributes</span>(subject_alphas, Q)</a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">attributes</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">51823</span>)</a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co"># Simulate attributes under the DINA model</span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4">attributes =<span class="st"> </span><span class="kw">sim_dina_attributes</span>(subject_alphas, Q)</a>
+<a class="sourceLine" id="cb23-5" data-line-number="5">attributes</a></code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 ##  [1,]    0    0    0    1    1    0    0    0    1     1
 ##  [2,]    1    1    1    1    1    1    1    1    1     1
@@ -344,36 +324,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="rrum-simulation" class="section level2">
-<h2><span class="header-section-number">2.2</span> rRUM Simulation</h2>
+<h2><span class="header-section-number">2.3</span> rRUM Simulation</h2>
 <p>The rRUM simulations are done using the following settings.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">888</span>)</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="co"># Setup Parameters</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">N =<span class="st"> </span><span class="dv">15</span>   <span class="co"># Number of Examinees / Subjects</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">J =<span class="st"> </span><span class="dv">10</span>   <span class="co"># Number of Items</span></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">K =<span class="st"> </span><span class="dv">2</span>    <span class="co"># Number of Skills / Attributes</span></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="co"># The probabilities of answering each item correctly for individuals </span></a>
-<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="co"># who do not lack any required attribute</span></a>
-<a class="sourceLine" id="cb27-9" data-line-number="9">pistar =<span class="st"> </span><span class="kw">rep</span>(.<span class="dv">9</span>, J)</a>
-<a class="sourceLine" id="cb27-10" data-line-number="10"><span class="co"># Simulate an identifiable Q matrix</span></a>
-<a class="sourceLine" id="cb27-11" data-line-number="11">Q =<span class="st"> </span><span class="kw">sim_q_matrix</span>(J, K)</a>
-<a class="sourceLine" id="cb27-12" data-line-number="12"><span class="co"># Penalties for failing to have each of the required attributes</span></a>
-<a class="sourceLine" id="cb27-13" data-line-number="13">rstar  =<span class="st"> </span><span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>Q</a>
-<a class="sourceLine" id="cb27-14" data-line-number="14"><span class="co"># Latent Class Probabilities</span></a>
-<a class="sourceLine" id="cb27-15" data-line-number="15">pis =<span class="st"> </span><span class="kw">c</span>(.<span class="dv">1</span>, <span class="fl">.2</span>, <span class="fl">.3</span>, <span class="fl">.4</span>)</a>
-<a class="sourceLine" id="cb27-16" data-line-number="16"><span class="co"># Generate latent attribute profile with custom probability (N subjects by K skills)</span></a>
-<a class="sourceLine" id="cb27-17" data-line-number="17">subject_alphas =<span class="st"> </span><span class="kw">sim_subject_attributes</span>(N, K, <span class="dt">prob =</span> pis)</a>
-<a class="sourceLine" id="cb27-18" data-line-number="18"><span class="co"># Equivalent to:</span></a>
-<a class="sourceLine" id="cb27-19" data-line-number="19"><span class="co"># class_alphas = attribute_classes(K)</span></a>
-<a class="sourceLine" id="cb27-20" data-line-number="20"><span class="co"># subject_alphas = class_alphas[sample(2 ^ K, N, replace = TRUE, prob = pis),]</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">888</span>)</a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="co"># Setup Parameters</span></a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">N =<span class="st"> </span><span class="dv">15</span>   <span class="co"># Number of Examinees / Subjects</span></a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">J =<span class="st"> </span><span class="dv">10</span>   <span class="co"># Number of Items</span></a>
+<a class="sourceLine" id="cb25-6" data-line-number="6">K =<span class="st"> </span><span class="dv">2</span>    <span class="co"># Number of Skills / Attributes</span></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="co"># The probabilities of answering each item correctly for individuals </span></a>
+<a class="sourceLine" id="cb25-8" data-line-number="8"><span class="co"># who do not lack any required attribute</span></a>
+<a class="sourceLine" id="cb25-9" data-line-number="9">pistar =<span class="st"> </span><span class="kw">rep</span>(.<span class="dv">9</span>, J)</a>
+<a class="sourceLine" id="cb25-10" data-line-number="10"><span class="co"># Simulate an identifiable Q matrix</span></a>
+<a class="sourceLine" id="cb25-11" data-line-number="11">Q =<span class="st"> </span><span class="kw">sim_q_matrix</span>(J, K)</a>
+<a class="sourceLine" id="cb25-12" data-line-number="12"><span class="co"># Penalties for failing to have each of the required attributes</span></a>
+<a class="sourceLine" id="cb25-13" data-line-number="13">rstar  =<span class="st"> </span><span class="fl">.5</span> <span class="op">*</span><span class="st"> </span>Q</a>
+<a class="sourceLine" id="cb25-14" data-line-number="14"><span class="co"># Latent Class Probabilities</span></a>
+<a class="sourceLine" id="cb25-15" data-line-number="15">pis =<span class="st"> </span><span class="kw">c</span>(.<span class="dv">1</span>, <span class="fl">.2</span>, <span class="fl">.3</span>, <span class="fl">.4</span>)</a>
+<a class="sourceLine" id="cb25-16" data-line-number="16"><span class="co"># Generate latent attribute profile with custom probability (N subjects by K skills)</span></a>
+<a class="sourceLine" id="cb25-17" data-line-number="17">subject_alphas =<span class="st"> </span><span class="kw">sim_subject_attributes</span>(N, K, <span class="dt">prob =</span> pis)</a>
+<a class="sourceLine" id="cb25-18" data-line-number="18"><span class="co"># Equivalent to:</span></a>
+<a class="sourceLine" id="cb25-19" data-line-number="19"><span class="co"># class_alphas = attribute_classes(K)</span></a>
+<a class="sourceLine" id="cb25-20" data-line-number="20"><span class="co"># subject_alphas = class_alphas[sample(2 ^ K, N, replace = TRUE, prob = pis),]</span></a></code></pre></div>
 <div id="simulate-rrum-items" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Simulate rRUM items</h3>
+<h3><span class="header-section-number">2.3.1</span> Simulate rRUM items</h3>
 <p>Simulate rRUM item data <span class="math inline">\(Y\)</span> (<span class="math inline">\(N\)</span> by <span class="math inline">\(J\)</span>)</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">912</span>)</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="co"># Generate rRUM items</span></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">rrum_items =<span class="st"> </span><span class="kw">sim_rrum_items</span>(Q, rstar, pistar, subject_alphas)</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">rrum_items</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="co"># Set a seed for reproducibility</span></a>
+<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="kw">set.seed</span>(<span class="dv">912</span>)</a>
+<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="co"># Generate rRUM items</span></a>
+<a class="sourceLine" id="cb26-4" data-line-number="4">rrum_items =<span class="st"> </span><span class="kw">sim_rrum_items</span>(Q, rstar, pistar, subject_alphas)</a>
+<a class="sourceLine" id="cb26-5" data-line-number="5">rrum_items</a></code></pre></div>
 <pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 ##  [1,]    1    1    1    0    1    0    1    1    1     0
 ##  [2,]    1    1    0    1    1    0    1    0    0     0

@@ -3,9 +3,9 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">ECDMs with R</a></li>
+        <li><a href="./">EDMs with R</a></li>
       after: |
-        <li><a href="https://github.com/tmsalab/ecdm-book" target="blank">Source</a></li>
+        <li><a href="https://github.com/tmsalab/edm-book" target="blank">Source</a></li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

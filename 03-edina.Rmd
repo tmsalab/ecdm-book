@@ -15,8 +15,9 @@ the `edina` function. This function requires:
 - `chain_length`: Amount of iterations to **keep**
 
 ```{r include = FALSE}
+library(edmcore)
 library(edina)
-library(ecdmdata)
+library(edmdata)
 ```
 
 ```{r, eval = FALSE}

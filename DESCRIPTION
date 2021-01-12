@@ -14,6 +14,8 @@ Imports:
   Rcpp,
   ggplot2,
   edm,
+  edmcore,
   edmdata
 Remotes:
-  tmsalab/edm
+  tmsalab/edm,
+  tmsalab/edmcore

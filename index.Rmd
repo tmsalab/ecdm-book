@@ -1,5 +1,5 @@
 --- 
-title: "Exploratory Cognitive Diagnostic Models"
+title: "Exploratory Diagnostic Models with R"
 author: "James Balamuta"
 date: "`r Sys.Date()`"
 knit: bookdown::render_book
@@ -8,9 +8,9 @@ documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-url: 'https\://tmsalab.github.io/ecdm-book/'
+url: 'https\://tmsalab.github.io/edm-book/'
 github-repo: tmsalab/ecdm-book
-description: "Work in progress manual for the exploratory cognitive diagnostic model package."
+description: "Work in progress manual for the exploratory diagnostic modeling framework."
 ---
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
@@ -22,6 +22,6 @@ require(knitr)
 
 # Welcome {-}
 
-Welcome to the Exploratory Cognitive Diagnostic Models with _R_ textbook. 
-The textbook is part of a training initiative with respect to the `ecdm`
+Welcome to the Exploratory Diagnostic Models with _R_ textbook. 
+The textbook is part of a training initiative with respect to the `edm`
 package that implement the underlying methodology.
